@@ -1,20 +1,26 @@
-function soma(a, b) {
-	return a + b;
+const usuario = {
+	nome: 'Isabela',
+	idade: 26,
+	endereco: {
+		cidade: 'São José dos Campos',
+		estado: 'SP',
+	},
+};
+
+// const nome = usuario.nome;
+// const idade = usuario.idade;
+// const cidade = usuario.endereco.cidade;
+
+const {nome, idade, endereco: {cidade}} = usuario;
+
+console.log(nome, idade, cidade);
+
+// function mostrarNome(usuario) {
+// 	console.log(usuario.nome);
+// }
+
+function mostrarNome({ nome, idade }) {
+	console.log(nome, idade)
 }
 
-console.log(soma(1)); // NaN
-console.log(soma()); // NaN
-
-// Definindo valor padrão
-function soma2(a = 3, b = 6) {
-	return a + b;
-}
-
-console.log(soma2(1)); // 7
-console.log(soma2()); // 9
-
-// Com arrow function
-const soma3 = (a = 3, b = 6) => a + b;
-
-console.log(soma3(1)); // 7
-console.log(soma3()); // 9
+mostrarNome(usuario);
