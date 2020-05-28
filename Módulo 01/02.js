@@ -30,8 +30,8 @@ console.log(find);
 //   { nome: 'Diego', idade: 46, empresa: 'Rocketseat' },
 //   { nome: 'Gabriel', idade: 30, empresa: 'Rocketseat' },
 // ]
-const idadeX2 = usuarios.map(user => ({...user, idade: user.idade * 2}));
-console.log(idadeX2);
+const calculo = usuarios
+  .map(usuario => ({ ...usuario, idade: usuario.idade * 2 }))
+  .filter(usuario => usuario.idade <= 50);
 
-const user50 = idadeX2.filter(user => user.idade <= 50);
-console.log(user50);
+console.log(calculo);
