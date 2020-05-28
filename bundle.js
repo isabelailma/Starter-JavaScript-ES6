@@ -2,5 +2,15 @@
 
 var nome = 'Isabela';
 var idade = 26;
-console.log('Meu nome é ' + nome + ' e tenho ' + idade + ' anos.');
-console.log("Meu nome \xE9 ".concat(nome, " e tenho ").concat(idade, " anos."));
+var usuario = {
+  nome: nome,
+  idade: idade,
+  empresa: 'GM'
+};
+console.log(usuario);
+var usuario2 = {
+  nome: nome,
+  idade: idade,
+  empresa: 'GM'
+};
+console.log(usuario2);
