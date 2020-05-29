@@ -10,10 +10,16 @@ const minhaPromise = () => new Promise((resolve, reject) => {
 //     console.log(err);
 //   });
 
-async function executaPromise() {
+// async function executaPromise() {
+//   console.log(await minhaPromise());
+//   console.log(await minhaPromise());
+//   console.log(await minhaPromise());
+// }
+
+const executaPromise = async () => {
   console.log(await minhaPromise());
   console.log(await minhaPromise());
   console.log(await minhaPromise());
-}
+};
 
 executaPromise();
