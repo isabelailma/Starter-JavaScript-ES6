@@ -1,104 +1,56 @@
-/* Exercicio 3 - Todos os exercícios abaixo necessitam que você esteja com o plugin do Async/Await 
-do Babel e o babel-polyfill devidamente configurados. Em alguns exercícios é necessário instalar 
-o Axios. 
-Transforme os seguintes trechos de código utilizando async/await: */
+class App {
+  constructor() {
+    this.repositories = [];
 
-// A
-// Função delay aciona o .then após 1s
-const delay = () => new Promise(resolve => setTimeout(resolve, 1000));
+    this.formEl = document.getElementById('repo-form');
+    this.listEl = document.getElementById('repo-list');
 
-/* function umPorSegundo() {
-  delay().then(() => {
-    console.log('1s');
-    delay().then(() => {
-      console.log('2s');
-      delay().then(() => {
-        console.log('3s');
-      });
-    })
-  });
-} */
+    this.registerHandlers();
+  }
+  registerHandlers() {
+    this.formEl.onsubmit = event => this.addRepository(event);
+  }
+  
+  addRepository(event) {
+    event.preventDefault();
 
-async function umPorSegundo() {
-  await delay();
-  console.log('1 segundo');
-  await delay();
-  console.log('2 segundos');
-  await delay();
-  console.log('3 segundos');
-}
-umPorSegundo();
+    this.repositories.push({
+      name: 'rocketseat.com.br',
+      description: 'Tire a sua idéia do papal e dê vida a sua startup.',
+      avatar_url: 'https://avatars1.githubusercontent.com/u/5637871?s=460&u=325536cd42eddc284890f57d9544e52af95850e6&v=4',
+      html_url: 'http://github.com/rocketseat/repos'
+    });
 
-// B
-import axios from 'axios';
+    this.render();
+  }
 
-/* function getUserFromGithub(user) {
-  axios.get(`https://api.github.com/users/${user}`)
-  .then(response => {
-    console.log(response.data);
-  })
-  .catch(err => {
-    console.log('Usuário não existe');
-  })
-} */
+  render() {
+    this.listEl.innerHTML = '';
 
-async function getUserFromGithub(user) {
-  try {
-    const response = await axios.get(`https://api.github.com/users/${user}`);
-    console.log(response.data);
-  } catch (error) {
-    console.warn('⚠ Usuário não existe!');
+    this.repositories.forEach(repo => {
+      let imgEl = document.createElement('img');
+      imgEl.setAttribute('src', repo.avatar_url);
+
+      let titleEl = document.createElement('strong');
+      titleEl.appendChild(document.createTextNode(repo.name));
+
+      let descriptionEl = document.createElement('p');
+      descriptionEl.appendChild(document.createTextNode(repo.description));
+
+      let linkEl = document.createElement('a');
+      linkEl.appendChild(document.createTextNode('Acessar'));
+      linkEl.setAttribute('target', '_blank');
+      linkEl.setAttribute('href', repo.html_url);
+
+      let listItemEl = document.createElement('li');
+      listItemEl.appendChild(imgEl);
+      listItemEl.appendChild(titleEl);
+      listItemEl.appendChild(descriptionEl);
+      listItemEl.appendChild(linkEl);
+
+      this.listEl.appendChild(listItemEl);
+    });
   }
 }
 
-getUserFromGithub('diego3g');
-getUserFromGithub('diego3g124123');
-
-// C
-/*class Github {
-  static getRepositories(repo) {
-    axios.get(`https://api.github.com/repos/${repo}`)
-    .then(response => {
-      console.log(response.data);
-    })
-    .catch(err => {
-      console.log('Repositório não existe');
-    })
-  }
-} */
-
-class Github {
-  static async getRepositories(repo) {
-    try {
-      const response = await axios.get(`https://api.github.com/repos/${repo}`);
-      console.log(response.data);
-    } catch (error) {
-      console.warn('⚠ Repositório não existe!');
-    }
-  }
-}
-
-Github.getRepositories('rocketseat/rocketseat.com.br');
-Github.getRepositories('rocketseat/dslkvmskv');
-
-// D
-/*const buscaUsuario = usuario => {
-  axios.get(`https://api.github.com/users/${user}`)
-  .then(response => {
-    console.log(response.data);
-  })
-  .catch(err => {
-    console.log('Usuário não existe');
-  });
-} */
-
-const buscaUsuario = async usuario => {
-  try {
-    const response = await axios.get(`https://api.github.com/users/${user}`);
-    console.log(response.data);
-  } catch (error) {
-    console.warn('⚠ Usuário não existe!');
-  }
-}
-
-buscaUsuario('diego3g');
+new App();
