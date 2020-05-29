@@ -90,11 +90,11 @@
 /*!**********************!*\
   !*** ./functions.js ***!
   \**********************/
-/*! exports provided: default, subtracao */
+/*! exports provided: soma, subtracao, multiplicacao */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return soma; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"subtracao\", function() { return subtracao; });\nfunction soma() {\n  for (var _len = arguments.length, nums = new Array(_len), _key = 0; _key < _len; _key++) {\n    nums[_key] = arguments[_key];\n  }\n\n  return nums.reduce(function (soma, next) {\n    return soma + next;\n  });\n}\nfunction subtracao(a, b) {\n  return a - b;\n}\n\n//# sourceURL=webpack:///./functions.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"soma\", function() { return soma; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"subtracao\", function() { return subtracao; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"multiplicacao\", function() { return multiplicacao; });\nfunction soma() {\n  for (var _len = arguments.length, nums = new Array(_len), _key = 0; _key < _len; _key++) {\n    nums[_key] = arguments[_key];\n  }\n\n  return nums.reduce(function (soma, next) {\n    return soma + next;\n  });\n}\nfunction subtracao(a, b) {\n  return a - b;\n}\nfunction multiplicacao() {\n  for (var _len2 = arguments.length, nums = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {\n    nums[_key2] = arguments[_key2];\n  }\n\n  return nums.reduce(function (multiplicacao, next) {\n    return multiplicacao * next;\n  });\n}\n\n//# sourceURL=webpack:///./functions.js?");
 
 /***/ }),
 
@@ -106,7 +106,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./functions */ \"./functions.js\");\n // import somaFunction from './soma';\n\nconsole.log(Object(_functions__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(1, 2));\nconsole.log(Object(_functions__WEBPACK_IMPORTED_MODULE_0__[\"subtracao\"])(4, 2));\n\n//# sourceURL=webpack:///./main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./functions */ \"./functions.js\");\n // import somaFunction from './soma';\n\nconsole.log(_functions__WEBPACK_IMPORTED_MODULE_0__);\nconsole.log(_functions__WEBPACK_IMPORTED_MODULE_0__[\"soma\"](1, 2));\nconsole.log(_functions__WEBPACK_IMPORTED_MODULE_0__[\"subtracao\"](4, 2));\nconsole.log(_functions__WEBPACK_IMPORTED_MODULE_0__[\"multiplicacao\"](1, 2, 3));\n\n//# sourceURL=webpack:///./main.js?");
 
 /***/ })
 
