@@ -11,6 +11,20 @@ const minhaPromise = () => new Promise((resolve, reject) => {
 //   });
 
 // async function executaPromise() {
+//   minhaPromise().then(response => {
+//     console.log(response);
+//
+//     minhaPromise().then(response => {
+//       console.log(response);
+//
+//       minhaPromise().then(response => {
+//         console.log(response);
+//       })
+//     })
+//   })
+// }
+
+// async function executaPromise() {
 //   console.log(await minhaPromise());
 //   console.log(await minhaPromise());
 //   console.log(await minhaPromise());
