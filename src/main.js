@@ -1,27 +1,47 @@
+import axios from 'axios';
+
 class App {
   constructor() {
     this.repositories = [];
 
+    this.inputEl = document.querySelector('input[name=repository]');
     this.formEl = document.getElementById('repo-form');
     this.listEl = document.getElementById('repo-list');
 
     this.registerHandlers();
   }
+
   registerHandlers() {
     this.formEl.onsubmit = event => this.addRepository(event);
   }
   
-  addRepository(event) {
+  async addRepository(event) {
     event.preventDefault();
 
-    this.repositories.push({
-      name: 'rocketseat.com.br',
-      description: 'Tire a sua idéia do papal e dê vida a sua startup.',
-      avatar_url: 'https://avatars1.githubusercontent.com/u/5637871?s=460&u=325536cd42eddc284890f57d9544e52af95850e6&v=4',
-      html_url: 'http://github.com/rocketseat/repos'
-    });
+    const repoInput = this.inputEl.value;
+
+    if (repoInput.length === 0) return;
+
+    await this.getRepositories(repoInput);
+    this.inputEl.value = '';
 
     this.render();
+  }
+
+  async getRepositories(repo) {
+    try {
+      const response = await axios.get(`https://api.github.com/repos/${repo}`);
+      const {name, description, html_url, owner: {avatar_url}} = response.data;
+
+      this.repositories.push({
+        name,
+        description,
+        avatar_url,
+        html_url,
+      });
+    } catch (error) {
+      console.warn('⚠ Repositório inexistente!');
+    }
   }
 
   render() {
