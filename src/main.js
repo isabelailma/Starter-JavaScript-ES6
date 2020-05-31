@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from './api';
 
 class App {
   constructor() {
@@ -22,15 +22,19 @@ class App {
 
     if (repoInput.length === 0) return;
 
+    this.setLoading();
+
     await this.getRepositories(repoInput);
     this.inputEl.value = '';
+
+    this.setLoading(false);
 
     this.render();
   }
 
   async getRepositories(repo) {
     try {
-      const response = await axios.get(`https://api.github.com/repos/${repo}`);
+      const response = await api.get(`/repos/${repo}`);
       const {name, description, html_url, owner: {avatar_url}} = response.data;
 
       this.repositories.push({
@@ -41,6 +45,7 @@ class App {
       });
     } catch (error) {
       console.warn('⚠ Repositório inexistente!');
+      alert('⚠ Repositório inexistente!');
     }
   }
 
@@ -70,6 +75,16 @@ class App {
 
       this.listEl.appendChild(listItemEl);
     });
+  }
+
+  setLoading(loading = true) {
+    if (loading === true) {
+      let loadingEl = document.createElement('div');
+      loadingEl.setAttribute('id', 'loading');
+      this.formEl.appendChild(loadingEl);
+    } else {
+      document.getElementById('loading').remove();
+    }
   }
 }
 
